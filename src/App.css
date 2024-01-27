@@ -1,0 +1,74 @@
+.background{
+  background-color: #747bff;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form{
+  background-color: #ffff;
+  height: 600px;
+  width: 400px;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.title{
+  color: black;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.wrap-button{
+  display: flex;
+  width: 100%;
+  border-width: 1px;
+  border-color: darkseagreen;
+  border-style: solid;
+  border-radius: 10px;
+}
+
+.login-button{
+  width: 50%;
+  background-color: #747bff;
+}
+
+.sign-button{
+  width: 50%;
+  background-color: #ffff;
+  color: black;
+  height: 50px;
+}
+
+.input{
+  width: 90%;
+  margin-top: 30px;
+  background-color: white;
+  height: 50px;
+  border-radius: 10px;
+  color: black;
+  padding-left: 30px;
+}
+
+.forgot-password{
+  color: #747bff;
+}
+
+.login-submit{
+  margin-top: 20px;
+  width: 100%;
+  background-color: #747bff;
+  height: 50px;
+}
+
+.not-a-member{
+  color: black;
+  text-align: center;
+}
+
+.sign-sp{
+  color: #747bff;
+}
