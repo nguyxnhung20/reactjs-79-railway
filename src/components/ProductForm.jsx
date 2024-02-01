@@ -22,7 +22,7 @@ const ProductForm = ({saveProduct}) => {
       name: name,
       company: company,
       amount: amount,
-      price: price
+      price: price,
     })
     closeForm();
   }
