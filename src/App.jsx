@@ -3,19 +3,18 @@ import ProductForm from "./components/ProductForm.jsx";
 import { useState } from "react";
 
 const Product = ({ name, company, amount, price, isEvenLine }) => {
-  const [upAmount, setUpAmount] = useState(amount);
-  const [upPrice, setUpPrice] = useState(price);
+    const [upAmount, setUpAmount] = useState(Number(amount));
+    const [upPrice, setUpPrice] = useState(Number(price));
 
-  const increasePrice = () => {
-    setUpPrice(upPrice + 1);
-  };
+    const increasePrice = () => {
+        setUpPrice(upPrice + 1);
+    };
 
+    const increaseQuantity = () => {
+        setUpAmount(upAmount + 1);
+    };
 
-  const increaseQuantity = () => {
-    setUpAmount(upAmount + 1);
-  };
-
-  const totalPrice = upPrice * upAmount;
+    const totalPrice = upPrice * upAmount;
 
   return (
       <tr style={{ backgroundColor: isEvenLine ? 'blue' : 'red' }}>
