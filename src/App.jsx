@@ -1,56 +1,74 @@
-import { useState } from 'react';
-import './App.css';
-import Result from "./components/Result.jsx";
+import './App.css'
+import ProductForm from "./components/ProductForm.jsx";
+import { useState } from "react";
+
+const Product = ({ name, company, amount, price, isEvenLine }) => {
+    const [upAmount, setUpAmount] = useState(Number(amount));
+    const [upPrice, setUpPrice] = useState(Number(price));
+
+    const increasePrice = () => {
+        setUpPrice(upPrice + 1);
+    };
+
+    const increaseQuantity = () => {
+        setUpAmount(upAmount + 1);
+    };
+
+    const totalPrice = upPrice * upAmount;
+
+  return (
+      <tr style={{ backgroundColor: isEvenLine ? 'blue' : 'red' }}>
+        <td>{name}</td>
+        <td>{company}</td>
+        <td>{upAmount}</td>
+        <td>{upPrice}</td>
+        <td>{totalPrice}</td>
+        <td>
+          <button onClick={increasePrice}>Tăng giá tiền</button>
+          <button onClick={increaseQuantity}>Tăng số lượng</button>
+        </td>
+      </tr>
+  );
+}
 
 function App() {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [isSubmitted, setSubmitted] = useState(false);
+  const [products, setProducts] = useState([]);
 
-    function submit() {
-        console.log(name, email, password, confirmPassword);
-        setSubmitted(true);
-    }
+  function saveProduct(newProduct) {
+    setProducts([...products, newProduct]);
+  }
 
-    function changeName(e) {
-        setName(e.target.value);
-        setSubmitted(false);
-    }
+  console.log(products);
 
-    function changeEmail(e) {
-        setEmail(e.target.value);
-        setSubmitted(false);
-    }
-
-    function changePassword(e) {
-        setPassword(e.target.value);
-        setSubmitted(false);
-    }
-
-    function changeConfirmPassword(e) {
-        setConfirmPassword(e.target.value);
-        setSubmitted(false);
-    }
-
-    return (
-        <div className="background">
-            <div className="login-form">
-                <p className="title">Register</p>
-                <input className="input" placeholder="Name" onChange={changeName} />
-                <input className="input" placeholder="Email Address" onChange={changeEmail} />
-                <input className="input" placeholder="Password" onChange={changePassword} />
-                <input className="input" placeholder="Confirm Password" onChange={changeConfirmPassword} />
-                <button className="login-submit" onClick={submit}>Register</button>
-                <p className="not-a-member">Already a member? <span className="sign-sp">Login now</span></p>
-            </div>
-            {
-                isSubmitted ? <Result name={name} email={email} password={password} confirmPassword={confirmPassword} /> : null
-            }
-
-        </div>
-    );
+  return (
+      <div className="container">
+        <ProductForm saveProduct={saveProduct} />
+        <p>Danh sách sản phẩm</p>
+        <table>
+          <thead>
+          <tr>
+            <th>Tên</th>
+            <th>Nhãn hàng</th>
+            <th>Số lượng</th>
+            <th>Giá tiền</th>
+            <th>Tổng số tiền</th>
+          </tr>
+          </thead>
+          <tbody>
+          {products.map((item, index) => (
+              <Product
+                  key={index}
+                  isEvenLine={index % 2 === 1}
+                  name={item.name}
+                  price={item.price}
+                  amount={item.amount}
+                  company={item.company}
+              />
+          ))}
+          </tbody>
+        </table>
+      </div>
+  );
 }
 
 export default App;
